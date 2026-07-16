@@ -28,7 +28,11 @@ test('Verify "All Books" link is visible after user login', async ({ page }) => 
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
   await page.fill('input[name="password"]', '123456');
-  await page.click('input[type="submit"]');
+
+  await Promise.all([
+    page.click('input[type="submit"]'),
+    page.waitForURL('http://localhost:3000/catalog')
+  ]);
 
   const allBooksLink = await page.$('a[href="/catalog"]');
   const isAllBooksLinkVisible = await allBooksLink.isVisible();
@@ -42,9 +46,11 @@ test('Login with valid credentials', async ({ page }) => {
   await page.fill('input[name="email"]', 'peter@abv.bg');
   await page.fill('input[name="password"]', '123456');
 
-  await page.click('input[type="submit"]');
+  await Promise.all([
+    page.click('input[type="submit"]'),
+    page.waitForURL('http://localhost:3000/catalog')
+  ]);
 
-  await page.$('a[href="/catalog"]');
   expect(page.url()).toBe('http://localhost:3000/catalog');
 });
 
@@ -166,7 +172,11 @@ test('Verify visibility of Logout button after user login', async ({ page }) => 
 
   await page.fill('input[name="email"]', 'peter@abv.bg');
   await page.fill('input[name="password"]', '123456');
-  await page.click('input[type="submit"]');
+
+  await Promise.all([
+    page.click('input[type="submit"]'),
+    page.waitForURL('http://localhost:3000/catalog')
+  ]);
 
   const logoutLink = await page.$('a[href="javascript:void(0)"]');
 
