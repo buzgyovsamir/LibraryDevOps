@@ -44,5 +44,27 @@ jobs:
       
     - name: Start tests
       run: npm test
+  
 
-    
+  deploy-be:
+    needs: build
+    runs-on: ubuntu-latest
+    if : github.ref == 'refs/heads/main'
+    steps:
+    - name: Checkout repository
+      uses: JorgeLNJunior/render-deploy@v1.5.0
+      with:
+        service_id: ${{ secrets.SERVICE_BE_ID }}
+        api_key: ${{ secrets.RENDER_TOKEN }}
+
+  deploy-fe:
+    needs: deploy-be
+    runs-on: ubuntu-latest
+    if : github.ref == 'refs/heads/main'
+    steps:
+    - name: Checkout repository
+      uses: JorgeLNJunior/render-deploy@v1.5.0
+      with:
+        service_id: ${{ secrets.SERVICE_FE_ID }}
+        api_key: ${{ secrets.RENDER_TOKEN }}
+
