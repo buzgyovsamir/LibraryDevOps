@@ -51,6 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
+      - uses: actions/checkout@v4
       - uses: JorgeLNJunior/render-deploy@v1.4.7
         with:
           github_token: ${{ github.token }}
@@ -63,6 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
+      - uses: actions/checkout@v4
       - uses: JorgeLNJunior/render-deploy@v1.4.7
         with:
           github_token: ${{ github.token }}
