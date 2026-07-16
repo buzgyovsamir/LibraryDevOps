@@ -66,7 +66,7 @@ jobs:
       - uses: JorgeLNJunior/render-deploy@v1.4.7
         with:
           github_token: ${{ github.token }}
-          service_id: ${{ secrets.RENDER_SERVICE_ID }}
-          api_key: ${{ secrets.RENDER_API_KEY }}
+          service_id: ${{ secrets.SERVICE_FE_ID }}
+          api_key: ${{ secrets.RENDER_TOKEN }}
           wait_deploy: true
 
